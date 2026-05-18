@@ -127,6 +127,44 @@ extension ListGuestsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
            return 60
     }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let action = UIContextualAction(style: .normal, title: "Изменить") { _, _, _ in
+            let alert = UIAlertController(title: "Изменить гостя", message: nil, preferredStyle: .alert)
+            
+            alert.addTextField { (textField) in
+                textField.text = self.guests[indexPath.row].name
+            }
+            alert.addTextField { (textField) in
+                textField.text = self.guests[indexPath.row].sername
+            }
+            
+            let action = UIAlertAction(title: "OK", style: .default) { _ in
+                self.guests[indexPath.row].name = alert.textFields?[0].text ?? ""
+                self.guests[indexPath.row].sername = alert.textFields?[1].text ?? ""
+                self.tableView.reloadData()
+            }
+            let cancel = UIAlertAction(title: "Отмена", style: .destructive)
+            alert.addAction(action)
+            alert.addAction(cancel)
+            self.present(alert, animated: true)
+        }
+        action.backgroundColor = .systemGreen
+        
+        let config = UISwipeActionsConfiguration(actions: [action])
+        return config
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: "Удалить") { _, _, _ in
+            self.guests.remove(at: indexPath.row)
+            self.tableView.reloadData()
+        }
+        
+        let config = UISwipeActionsConfiguration(actions: [deleteAction])
+        return config
+    }
 }
 
 private extension ListGuestsViewController {
