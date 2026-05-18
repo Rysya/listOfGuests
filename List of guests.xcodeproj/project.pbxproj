@@ -6,30 +6,31 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		595370482FBB162C0040ABE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5953703F2FBB162C0040ABE8 /* Assets.xcassets */; };
+		5953704A2FBB162C0040ABE8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 595370422FBB162C0040ABE8 /* LaunchScreen.storyboard */; };
+		5953704C2FBB162C0040ABE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5953703E2FBB162C0040ABE8 /* AppDelegate.swift */; };
+		5953704D2FBB162C0040ABE8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595370452FBB162C0040ABE8 /* SceneDelegate.swift */; };
+		5953704E2FBB162C0040ABE8 /* ListGuestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595370462FBB162C0040ABE8 /* ListGuestsViewController.swift */; };
+		595370552FBB1C6F0040ABE8 /* UIView.addSubViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595370542FBB1C6C0040ABE8 /* UIView.addSubViews.swift */; };
+		595370582FBB1D420040ABE8 /* listGuests.json in Resources */ = {isa = PBXBuildFile; fileRef = 595370572FBB1D300040ABE8 /* listGuests.json */; };
+		5953705A2FBB1D730040ABE8 /* Guest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595370592FBB1D5D0040ABE8 /* Guest.swift */; };
+		5953705E2FBB25990040ABE8 /* GuestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5953705D2FBB25990040ABE8 /* GuestTableViewCell.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		59536FE42FBB0FEE0040ABE8 /* List of guests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "List of guests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5953703E2FBB162C0040ABE8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		5953703F2FBB162C0040ABE8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		595370402FBB162C0040ABE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		595370412FBB162C0040ABE8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		595370452FBB162C0040ABE8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		595370462FBB162C0040ABE8 /* ListGuestsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListGuestsViewController.swift; sourceTree = "<group>"; };
+		595370542FBB1C6C0040ABE8 /* UIView.addSubViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.addSubViews.swift; sourceTree = "<group>"; };
+		595370572FBB1D300040ABE8 /* listGuests.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = listGuests.json; sourceTree = "<group>"; };
+		595370592FBB1D5D0040ABE8 /* Guest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guest.swift; sourceTree = "<group>"; };
+		5953705D2FBB25990040ABE8 /* GuestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		59536FF62FBB0FEF0040ABE8 /* Exceptions for "List of guests" folder in "List of guests" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 59536FE32FBB0FEE0040ABE8 /* List of guests */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		59536FE62FBB0FEE0040ABE8 /* List of guests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				59536FF62FBB0FEF0040ABE8 /* Exceptions for "List of guests" folder in "List of guests" target */,
-			);
-			path = "List of guests";
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		59536FE12FBB0FEE0040ABE8 /* Frameworks */ = {
@@ -45,7 +46,7 @@
 		59536FDB2FBB0FEE0040ABE8 = {
 			isa = PBXGroup;
 			children = (
-				59536FE62FBB0FEE0040ABE8 /* List of guests */,
+				595370472FBB162C0040ABE8 /* List of guests */,
 				59536FE52FBB0FEE0040ABE8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -56,6 +57,71 @@
 				59536FE42FBB0FEE0040ABE8 /* List of guests.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		595370472FBB162C0040ABE8 /* List of guests */ = {
+			isa = PBXGroup;
+			children = (
+				5953704F2FBB16320040ABE8 /* App */,
+				595370532FBB1C420040ABE8 /* Extensions */,
+				595370522FBB19C50040ABE8 /* Resources */,
+				595370562FBB1CCD0040ABE8 /* Model */,
+				595370512FBB19AF0040ABE8 /* View */,
+				595370502FBB19890040ABE8 /* ViewController */,
+			);
+			path = "List of guests";
+			sourceTree = "<group>";
+		};
+		5953704F2FBB16320040ABE8 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				5953703E2FBB162C0040ABE8 /* AppDelegate.swift */,
+				595370452FBB162C0040ABE8 /* SceneDelegate.swift */,
+				595370422FBB162C0040ABE8 /* LaunchScreen.storyboard */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		595370502FBB19890040ABE8 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				595370462FBB162C0040ABE8 /* ListGuestsViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		595370512FBB19AF0040ABE8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5953705D2FBB25990040ABE8 /* GuestTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		595370522FBB19C50040ABE8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5953703F2FBB162C0040ABE8 /* Assets.xcassets */,
+				595370402FBB162C0040ABE8 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		595370532FBB1C420040ABE8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				595370542FBB1C6C0040ABE8 /* UIView.addSubViews.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		595370562FBB1CCD0040ABE8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				595370592FBB1D5D0040ABE8 /* Guest.swift */,
+				595370572FBB1D300040ABE8 /* listGuests.json */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -72,9 +138,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				59536FE62FBB0FEE0040ABE8 /* List of guests */,
 			);
 			name = "List of guests";
 			packageProductDependencies = (
@@ -122,6 +185,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				595370482FBB162C0040ABE8 /* Assets.xcassets in Resources */,
+				5953704A2FBB162C0040ABE8 /* LaunchScreen.storyboard in Resources */,
+				595370582FBB1D420040ABE8 /* listGuests.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,10 +198,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5953705E2FBB25990040ABE8 /* GuestTableViewCell.swift in Sources */,
+				5953704C2FBB162C0040ABE8 /* AppDelegate.swift in Sources */,
+				5953704D2FBB162C0040ABE8 /* SceneDelegate.swift in Sources */,
+				5953705A2FBB1D730040ABE8 /* Guest.swift in Sources */,
+				595370552FBB1C6F0040ABE8 /* UIView.addSubViews.swift in Sources */,
+				5953704E2FBB162C0040ABE8 /* ListGuestsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		595370422FBB162C0040ABE8 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				595370412FBB162C0040ABE8 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		59536FF82FBB0FEF0040ABE8 /* Debug */ = {
@@ -147,10 +230,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HU72KBR3S6;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "List of guests/Info.plist";
+				INFOPLIST_FILE = "List of guests/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -179,10 +261,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HU72KBR3S6;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "List of guests/Info.plist";
+				INFOPLIST_FILE = "List of guests/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
