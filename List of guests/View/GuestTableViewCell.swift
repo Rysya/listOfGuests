@@ -8,23 +8,30 @@ class GuestTableViewCell: UITableViewCell {
         2: ("person.2"),
         3: ("person.3")]
     
-    let nameLabel: UILabel = {
+    private let nameLabel: UILabel = {
         let label = UILabel()
         label.text = ""
         return label
     }()
     
-    lazy var segmentedControl: UISegmentedControl = {
+    private lazy var segmentedControl: UISegmentedControl = {
         let control = UISegmentedControl(items: ["1", "2", "3"])
         control.selectedSegmentIndex = 0
         control.setTitle("Один", forSegmentAt: 0)
         control.setTitle("Вдвоем", forSegmentAt: 1)
         control.setTitle("Втроем", forSegmentAt: 2)
         control.addTarget(self, action: #selector(didChangeNumberOfPeople(_:)), for: .valueChanged)
+        control.selectedSegmentTintColor = .myBlue
+        control.layer.borderWidth = 1
+        control.layer.borderColor = UIColor.myBlue.cgColor
+        control.layer.cornerRadius = 5
+        control.layer.masksToBounds = true
+        control.clipsToBounds = true
+        control.layer.cornerCurve = .continuous
         return control
     }()
     
-    lazy var iconImageView: UIImageView = {
+    private lazy var iconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "person")
         imageView.backgroundColor = .systemGray

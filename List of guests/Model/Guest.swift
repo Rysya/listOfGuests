@@ -6,5 +6,3 @@ struct Guest: Codable {
     var sername: String
     var count: Int
 }
-
-
