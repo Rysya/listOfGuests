@@ -2,7 +2,9 @@ import UIKit
 
 class ListGuestsViewController: UIViewController {
     
-    private var guests: [Guest] = [] {
+    private let loaderManadger: LoaderManadgerProtocol
+    
+    var guests: [Guest] = [] {
         didSet {
             tableView.reloadData()
         }
@@ -42,13 +44,30 @@ class ListGuestsViewController: UIViewController {
         tableView.register(GuestTableViewCell.self, forCellReuseIdentifier: GuestTableViewCell.id)
         return tableView
     }()
-
+    
+    init(loaderManadger: LoaderManadgerProtocol) {
+        self.loaderManadger = loaderManadger
+        super.init(nibName: nil, bundle: nil)
+        loadGuests()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .myBlue
         setupTableView()
-        loadGuests()
         setupConstraints()
+    }
+    
+    private func loadGuests() {
+        do {
+            guests = try loaderManadger.loadGuests()
+        } catch {
+            print(error.localizedDescription)
+        }
     }
 
     private func setupTableView() {
@@ -147,28 +166,5 @@ extension ListGuestsViewController: UITableViewDataSource, UITableViewDelegate {
         }
         let config = UISwipeActionsConfiguration(actions: [deleteAction])
         return config
-    }
-}
-
-private extension ListGuestsViewController {
-    func loadGuests() {
-        guard let url = Bundle.main.url(
-            forResource: "listGuests",
-            withExtension: "json"
-        ) else {
-            print("JSON file not found")
-            return
-        }
-        do {
-            let data = try Data(contentsOf: url)
-
-            let decodedGuests = try JSONDecoder().decode(
-                [Guest].self,
-                from: data
-            )
-            guests = decodedGuests
-        } catch {
-            print("Decode error:", error)
-        }
     }
 }

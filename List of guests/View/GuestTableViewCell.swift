@@ -41,16 +41,16 @@ class GuestTableViewCell: UITableViewCell {
         imageView.frame.size = CGSize(width: 30, height: 30)
         return imageView
     }()
-
-    @objc func didChangeNumberOfPeople(_ sender: UISegmentedControl) {
-        segmentedControl.selectedSegmentIndex = sender.selectedSegmentIndex
-        iconImageView.image = UIImage(systemName: Self.icons[sender.selectedSegmentIndex + 1] ?? "")
-    }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         contentView.addSubviews([iconImageView, nameLabel, segmentedControl])
         setupConstraints()
+    }
+    
+    @objc private func didChangeNumberOfPeople(_ sender: UISegmentedControl) {
+        segmentedControl.selectedSegmentIndex = sender.selectedSegmentIndex
+        iconImageView.image = UIImage(systemName: Self.icons[sender.selectedSegmentIndex + 1] ?? "")
     }
     
     func setup(with guest: Guest) {
