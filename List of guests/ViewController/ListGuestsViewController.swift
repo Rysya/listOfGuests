@@ -1,13 +1,8 @@
-//
-//  ViewController.swift
-//  List of guests
-//
-//  Created by Мария Александрова on 18.05.2026.
-//
-
 import UIKit
 
 class ListGuestsViewController: UIViewController {
+    
+    private let loaderManadger: LoaderManadgerProtocol
     
     var guests: [Guest] = [] {
         didSet {
@@ -32,7 +27,6 @@ class ListGuestsViewController: UIViewController {
         button.setTitleColor(.darkGray, for: .highlighted)
         button.setTitleColor(.darkGray, for: .selected)
         button.setTitleColor(.darkGray, for: .disabled)
-        
         button.layer.masksToBounds = true
         button.addTarget(self, action: #selector(addGuestButtonTapped), for: .touchUpInside)
         return button
@@ -46,27 +40,41 @@ class ListGuestsViewController: UIViewController {
         tableView.allowsSelection = false
         tableView.separatorStyle = .singleLine
         tableView.separatorInset = .init(top: 0, left: 0, bottom: 0, right: 0)
-        tableView.separatorColor = .systemBlue
-//      tableView.separatorEffect = UIBlurEffect(style: .systemUltraThinMaterial)
+        tableView.separatorColor = .myBlue
         tableView.register(GuestTableViewCell.self, forCellReuseIdentifier: GuestTableViewCell.id)
         return tableView
     }()
-
+    
+    init(loaderManadger: LoaderManadgerProtocol) {
+        self.loaderManadger = loaderManadger
+        super.init(nibName: nil, bundle: nil)
+        loadGuests()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBlue
+        view.backgroundColor = .myBlue
         setupTableView()
-        loadGuests()
         setupConstraints()
-//        tableView.isHidden = true
+    }
+    
+    private func loadGuests() {
+        do {
+            guests = try loaderManadger.loadGuests()
+        } catch {
+            print(error.localizedDescription)
+        }
     }
 
-    func setupTableView() {
+    private func setupTableView() {
         view.addSubviews([addGuest, tableView])
    }
     
     @objc private func addGuestButtonTapped() {
-//        print("addGuestButtonTapped")
         showAlertAddGuest()
     }
     
@@ -97,8 +105,6 @@ class ListGuestsViewController: UIViewController {
         NSLayoutConstraint.activate([
             addGuest.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             addGuest.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            addGuest.widthAnchor.constraint(equalToConstant: 300),
-//            addGuest.heightAnchor.constraint(equalToConstant: 48),
 
             tableView.topAnchor.constraint(equalTo: addGuest.bottomAnchor, constant: 10),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -106,7 +112,6 @@ class ListGuestsViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
     }
-    
 }
 
 extension ListGuestsViewController: UITableViewDataSource, UITableViewDelegate {
@@ -127,30 +132,39 @@ extension ListGuestsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
            return 60
     }
-}
-
-private extension ListGuestsViewController {
-
-    func loadGuests() {
-
-        guard let url = Bundle.main.url(
-            forResource: "listGuests",
-            withExtension: "json"
-        ) else {
-            print("JSON file not found")
-            return
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let action = UIContextualAction(style: .normal, title: "Изменить") { _, _, _ in
+            let alert = UIAlertController(title: "Изменить гостя", message: nil, preferredStyle: .alert)
+            
+            alert.addTextField { (textField) in
+                textField.text = self.guests[indexPath.row].name
+            }
+            alert.addTextField { (textField) in
+                textField.text = self.guests[indexPath.row].sername
+            }
+            
+            let action = UIAlertAction(title: "OK", style: .default) { _ in
+                self.guests[indexPath.row].name = alert.textFields?[0].text ?? ""
+                self.guests[indexPath.row].sername = alert.textFields?[1].text ?? ""
+                self.tableView.reloadData()
+            }
+            let cancel = UIAlertAction(title: "Отмена", style: .destructive)
+            alert.addAction(action)
+            alert.addAction(cancel)
+            self.present(alert, animated: true)
         }
-
-        do {
-            let data = try Data(contentsOf: url)
-
-            let decodedGuests = try JSONDecoder().decode(
-                [Guest].self,
-                from: data
-            )
-            guests = decodedGuests
-        } catch {
-            print("Decode error:", error)
+        action.backgroundColor = .systemGreen
+        let config = UISwipeActionsConfiguration(actions: [action])
+        return config
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "Удалить") { _, _, _ in
+            self.guests.remove(at: indexPath.row)
+            self.tableView.reloadData()
         }
+        let config = UISwipeActionsConfiguration(actions: [deleteAction])
+        return config
     }
 }
